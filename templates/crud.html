@@ -1,0 +1,15 @@
+{% extends "layout.html" %}{% block content %}
+<div class="top"><div><h1>{{title}}</h1><div class="muted">Cadastre, consulte e remova registros diretamente no banco.</div></div></div>
+<div class="card">
+<form method="post" class="form">
+{% if kind=="alunos" %}<input name="nome" placeholder="Nome do aluno" required><select name="turma_id" required>{% for c in classes %}<option value="{{c.id}}">{{c.nome}}</option>{% endfor %}</select><button class="btn">+ Adicionar aluno</button>
+{% elif kind=="turmas" %}<input name="nome" placeholder="Nome da turma" required><input name="serie" placeholder="Ano/Série" required><button class="btn">+ Adicionar turma</button>
+{% elif kind=="professores" %}<input name="nome" placeholder="Nome do professor" required><button class="btn">+ Adicionar professor</button>
+{% elif kind=="ingredientes" %}<input name="nome" placeholder="Ingrediente" required><input type="number" step="0.01" name="quantidade" placeholder="Quantidade por refeição" required><select name="unidade"><option>g</option><option>ml</option><option>unidade</option></select><button class="btn">+ Adicionar ingrediente</button>{% endif %}
+</form>
+<table class="table"><thead><tr>{% if kind=="alunos" %}<th>Nome</th><th>Turma</th>{% elif kind=="turmas" %}<th>Turma</th><th>Série</th>{% elif kind=="professores" %}<th>Nome</th>{% else %}<th>Ingrediente</th><th>Por refeição</th><th>Unidade</th>{% endif %}<th>Ação</th></tr></thead><tbody>
+{% for r in rows %}<tr>{% if kind=="alunos" %}<td>{{r.nome}}</td><td>{{r.turma}}</td><td>{% set path="/alunos/" ~ r.id ~ "/excluir" %}<form method="post" action="{{path}}"><button class="btn gray">Desativar</button></form></td>
+{% elif kind=="turmas" %}<td>{{r.nome}}</td><td>{{r.serie}}</td><td><form method="post" action="/turmas/{{r.id}}/excluir"><button class="btn gray">Desativar</button></form></td>
+{% elif kind=="professores" %}<td>{{r.nome}}</td><td><form method="post" action="/professores/{{r.id}}/excluir"><button class="btn gray">Desativar</button></form></td>
+{% else %}<td>{{r.nome}}</td><td>{{r.quantidade_por_refeicao}}</td><td>{{r.unidade}}</td><td><form method="post" action="/ingredientes/{{r.id}}/excluir"><button class="btn gray">Desativar</button></form></td>{% endif %}</tr>{% endfor %}
+</tbody></table></div>{% endblock %}

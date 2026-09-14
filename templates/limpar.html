@@ -1,0 +1,43 @@
+{% extends "layout.html" %}{% block content %}
+<div class="top"><div><h1>🗑️ Apagar dados</h1><div class="muted">Remove permanentemente os registros selecionados do banco. Não há como desfazer.</div></div></div>
+<div class="card">
+<form method="post">
+<div style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px">
+
+<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid #ddd;border-radius:8px">
+<input type="checkbox" name="itens" value="turmas" id="it_turmas" style="width:20px;height:20px;flex:none;margin-top:2px">
+<label for="it_turmas" style="cursor:pointer"><strong>Turmas</strong><br><span class="muted">Apaga também os alunos e as presenças desses alunos (dependem da turma).</span></label>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid #ddd;border-radius:8px">
+<input type="checkbox" name="itens" value="alunos" id="it_alunos" style="width:20px;height:20px;flex:none;margin-top:2px">
+<label for="it_alunos" style="cursor:pointer"><strong>Alunos</strong><br><span class="muted">Apaga os alunos e suas presenças. As turmas continuam existindo.</span></label>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid #ddd;border-radius:8px">
+<input type="checkbox" name="itens" value="professores" id="it_prof" style="width:20px;height:20px;flex:none;margin-top:2px">
+<label for="it_prof" style="cursor:pointer"><strong>Professores</strong><br><span class="muted">Apaga os professores e suas presenças.</span></label>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid #ddd;border-radius:8px">
+<input type="checkbox" name="itens" value="ingredientes" id="it_ing" style="width:20px;height:20px;flex:none;margin-top:2px">
+<label for="it_ing" style="cursor:pointer"><strong>Ingredientes</strong><br><span class="muted">Apaga a lista de ingredientes e quantidades por refeição.</span></label>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid #ddd;border-radius:8px">
+<input type="checkbox" name="itens" value="cardapios" id="it_card" style="width:20px;height:20px;flex:none;margin-top:2px">
+<label for="it_card" style="cursor:pointer"><strong>Cardápios</strong><br><span class="muted">Apaga todo o histórico de cardápios cadastrados.</span></label>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid #ddd;border-radius:8px">
+<input type="checkbox" name="itens" value="relatorios" id="it_rel" style="width:20px;height:20px;flex:none;margin-top:2px">
+<label for="it_rel" style="cursor:pointer"><strong>Relatórios de consumo</strong><br><span class="muted">Apaga refeições preparadas, sobras e descartes registrados.</span></label>
+</div>
+
+</div>
+
+<p><label>Para confirmar, digite <strong>APAGAR</strong><br><input type="text" name="confirmacao" autocomplete="off" placeholder="APAGAR" style="width:100%"></label></p>
+<button class="btn" style="background:#c0392b" onclick="return confirm('Tem certeza? Essa ação não pode ser desfeita.');">Apagar selecionados</button>
+</form>
+</div>
+{% endblock %}

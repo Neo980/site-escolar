@@ -1,0 +1,6 @@
+{% extends "layout.html" %}{% block content %}
+<div class="top"><div><h1>Registro de Presença</h1><div class="muted">Marque quem está presente. O banco guarda a data de cada registro.</div></div></div>
+<form method="post" class="card"><div class="form"><label>Data <input type="date" name="data" value="{{data}}"></label><button class="btn gray" type="button" onclick="document.querySelectorAll('input[type=checkbox]').forEach(x=>x.checked=true)">Marcar todos</button></div>
+<h3>Alunos</h3><table class="table"><tr><th>Nome</th><th>Turma</th><th>Presente</th></tr>{% for a in alunos %}<tr><td>{{a.nome}}</td><td>{{a.turma}}</td><td><input type="checkbox" name="aluno_presente" value="{{a.id}}" {% if a.presente %}checked{% endif %}></td></tr>{% endfor %}</table>
+<h3>Professores</h3><table class="table"><tr><th>Nome</th><th>Presente</th></tr>{% for p in professores %}<tr><td>{{p.nome}}</td><td><input type="checkbox" name="professor_presente" value="{{p.id}}" {% if p.presente %}checked{% endif %}></td></tr>{% endfor %}</table>
+<br><button class="btn green">Salvar presença</button></form>{% endblock %}

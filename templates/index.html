@@ -1,0 +1,11 @@
+{% extends "layout.html" %}{% block content %}
+<div class="top"><div><h1>Olá! 👋</h1><div class="muted">{{escola.nome}} · {{data}}</div></div><a class="btn" href="/presenca?data={{data}}">Registrar presença</a></div>
+<div class="grid">
+<div class="card"><div class="muted">Alunos presentes</div><div class="num">{{alunos}}</div></div>
+<div class="card"><div class="muted">Professores presentes</div><div class="num">{{professores}}</div></div>
+<div class="card"><div class="muted">Refeições base</div><div class="num">{{base}}</div></div>
+<div class="card"><div class="muted">Com margem de {{(escola.margem*100)|round|int}}%</div><div class="num">{{total}}</div></div>
+</div>
+<div class="grid2" style="margin-top:15px"><div class="card"><h3>Cálculo da merenda</h3><p class="muted">A quantidade abaixo usa alunos + professores presentes e a margem configurada.</p>{% for i in ingredientes %}<div class="ingredient"><span>{{i.nome}}</span><strong>{{"%.2f"|format(i.quantidade_por_refeicao*total/1000)}} kg</strong></div>{% endfor %}</div>
+<div class="card"><h3>Cadastros rápidos</h3><p><a class="btn" href="/alunos">Adicionar alunos</a></p><p><a class="btn gray" href="/professores">Adicionar professores</a></p><p><a class="btn gray" href="/ingredientes">Adicionar ingredientes</a></p><p><a class="btn gray" href="/turmas">Adicionar turmas</a></p></div></div>
+{% endblock %}
